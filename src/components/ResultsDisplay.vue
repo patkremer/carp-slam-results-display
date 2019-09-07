@@ -3,14 +3,6 @@
     <v-layout text-center wrap>
       <v-flex mb-4>
         <h1 class="display-2 font-weight-bold mb-3">Carp Slam 2019 Results</h1>
-        <!-- <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>-->
       </v-flex>
 
       <v-flex mb-12 xs12>
@@ -18,27 +10,8 @@
 
         <v-layout>
           <v-row no-gutters>
-            <v-col v-for="(carp, i) in carpSlamResults.data" :key="i">
-              <v-card class="mx-auto" width="400px">
-                <v-img class="white--text" height="200px" :src="carp.Picture" v-if="carp.Picture">
-                  <v-card-title
-                    class="align-end fill-height"
-                  >{{carp.Species}} - {{carp.Length}} inches</v-card-title>
-                </v-img>
-                <v-card-title
-                  class="align-end fill-height"
-                  v-else
-                >{{carp.Species}} - {{carp.Length}} inches</v-card-title>
-                <v-card-text></v-card-text>
-                <v-card-text>
-                  Team: {{carp.Team}}
-                  <br>
-                  Caught By: {{carp.Competitor}} at {{carp.Time}}
-                  <br>
-                  Beat: {{carp.Beat}}
-                </v-card-text>
-                <v-card-text></v-card-text>
-              </v-card>
+            <v-col v-for="(carp, i) in carpSlamResults.morning" :key="i">
+              <ResultsDisplayCard v-bind:carp="carp"></ResultsDisplayCard>
             </v-col>
           </v-row>
         </v-layout>
@@ -48,12 +21,14 @@
 </template>
 
 <script>
+import ResultsDisplayCard from "./ResultsDisplayCard.vue";
 export default {
+  components: {
+    ResultsDisplayCard
+  },
   data: () => ({
     carpSlamResults: {
-      _blockspring_spec: true,
-      _errors: [],
-      data: [
+      morning: [
         {
           Team: "Clifton-Janine Whispell",
           Competitor: "Clifton",
