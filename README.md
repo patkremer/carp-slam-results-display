@@ -15,6 +15,11 @@ npm run serve
 npm run build
 ```
 
+### deploy 
+```
+surge dist carpslam.surge.sh
+```
+
 ### Run your tests
 ```
 npm run test
